@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidya Yoga Flow - Class Pricing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .flyer {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        
+        .header .tagline {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-style: italic;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .intro-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e0e7ff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #667eea;
+            text-align: center;
+        }
+        
+        .intro-box h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+        
+        .intro-box p {
+            color: #444;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+        
+        .credit-value {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .credit-value h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .credit-value .values {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .value-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .value-item strong {
+            color: #856404;
+            font-size: 1.2em;
+        }
+        
+        .package {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #e0e7ff;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .package.featured {
+            border: 3px solid #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .package-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .package.featured .package-title {
+            color: #ff6b6b;
+        }
+        
+        .price {
+            font-size: 2.5em;
+            color: #764ba2;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .package.featured .price {
+            color: #ff6b6b;
+        }
+        
+        .price-note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.6em;
+            margin-left: 10px;
+        }
+        
+        .details {
+            list-style: none;
+            margin: 15px 0;
+        }
+        
+        .details li {
+            padding: 8px 0;
+            color: #444;
+            font-size: 1.05em;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .details li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .package.featured .details li:before {
+            content: "🎁";
+            font-size: 1em;
+        }
+        
+        .examples {
+            background: #fff9e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .examples h4 {
+            color: #f57c00;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .example-item {
+            margin: 8px 0;
+            color: #444;
+            font-size: 0.95em;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .example-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #f57c00;
+        }
+        
+        .schedule {
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .schedule h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+        
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .schedule-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2e7d32;
+        }
+        
+        .schedule-item strong {
+            color: #2e7d32;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .schedule-item div {
+            color: #555;
+            margin: 4px 0;
+        }
+        
+        .footer {
+            background: #667eea;
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+        
+        .footer .demo-dates {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .cta {
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .savings-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .price {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 25px 20px;
+            }
+            
+            .package {
+                padding: 20px;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+        <div class="header">
+            <h1>🧘‍♀️ VIDYA YOGA FLOW</h1>
+            <p class="tagline">Flexible Credit System • Your Schedule, Your Way</p>
+        </div>
+        
+        <div class="content">
+            <!-- Introduction -->
+            <div class="intro-box">
+                <h2>🔄 How Our Credit System Works</h2>
+                <p><strong>Buy credits once, use them anywhere!</strong></p>
+                <p>Mix and match online and studio classes to fit YOUR life.</p>
+                <p>All credits valid for 4 months from purchase.</p>
+            </div>
+            
+            <!-- Credit Values -->
+            <div class="credit-value">
+                <h3>💰 Credit Values</h3>
+                <div class="values">
+                    <div class="value-item">
+                        <strong>1 Credit</strong>
+                        <div>Online Group Class</div>
+                        <div style="color: #667eea; font-size: 1.3em; margin-top: 5px;">$11</div>
+                    </div>
+                    <div class="value-item">
+                        <strong>2 Credits</strong>
+                        <div>Studio Group Class</div>
+                        <div style="color: #667eea; font-size: 1.3em; margin-top: 5px;">$22</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FOUNDING MEMBER SPECIAL -->
+            <div class="package featured">
+                <div class="badge">⭐ FOUNDING MEMBER SPECIAL</div>
+                <h2 class="package-title">🎁 25 Credits for $220</h2>
+                <div class="price">$220 <span class="original-price">$275</span></div>
+                <p class="price-note">First 25 Students Only! • Valid 4 Months</p>
+                <ul class="details">
+                    <li><strong>Get 5 FREE credits</strong> (worth $55!)</li>
+                    <li>Perfect for trying both online and studio</li>
+                    <li>Lock in this exclusive rate</li>
+                    <li>Limited time - only 25 spots available</li>
+                    <li>Same 4-month validity as regular packages</li>
+                </ul>
+                
+                <div class="examples">
+                    <h4>💡 What You Can Do With 25 Credits:</h4>
+                    <div class="example-item">25 online classes (8+ weeks of Mon/Wed/Fri!)</div>
+                    <div class="example-item">12 studio classes + 1 online (3 months of Tue/Thu)</div>
+                    <div class="example-item">15 online + 5 studio (balanced practice)</div>
+                    <div class="example-item">9 online + 8 studio (studio-focused)</div>
+                </div>
+            </div>
+            
+            <!-- 20 Credit Package -->
+            <div class="package">
+                <h2 class="package-title">📦 Standard Package: 20 Credits</h2>
+                <div class="price">$220</div>
+                <p class="price-note">$11 per credit • Valid 4 Months</p>
+                <ul class="details">
+                    <li>Perfect for regular practitioners</li>
+                    <li>Use for online, studio, or both</li>
+                    <li>No expiration stress - full 4 months</li>
+                    <li>Flexibility to change your routine</li>
+                    <li>Most popular choice</li>
+                </ul>
+                
+                <div class="examples">
+                    <h4>💡 Usage Examples (20 Credits):</h4>
+                    <div class="example-item">20 online classes (nearly 7 weeks)</div>
+                    <div class="example-item">10 studio classes (5 weeks of Tue/Thu)</div>
+                    <div class="example-item">12 online + 4 studio (balanced approach)</div>
+                    <div class="example-item">6 online + 7 studio (studio-focused)</div>
+                </div>
+            </div>
+            
+            <!-- 40 Credit Package -->
+            <div class="package">
+                <h2 class="package-title">📦 Committed Package: 40 Credits</h2>
+                <div class="price">$440</div>
+                <p class="price-note">$11 per credit • Valid 4 Months</p>
+                <ul class="details">
+                    <li>Best value for dedicated practitioners</li>
+                    <li>Attend multiple classes per week</li>
+                    <li>Never worry about running out</li>
+                    <li>Perfect for mixing daily online + weekly studio</li>
+                    <li>Enough for 3+ months of regular practice</li>
+                </ul>
+                
+                <div class="examples">
+                    <h4>💡 Usage Examples (40 Credits):</h4>
+                    <div class="example-item">40 online classes (13+ weeks of Mon/Wed/Fri)</div>
+                    <div class="example-item">20 studio classes (10 weeks of Tue/Thu)</div>
+                    <div class="example-item">24 online + 8 studio (full 4-month balance)</div>
+                    <div class="example-item">16 online + 12 studio (studio-heavy routine)</div>
+                </div>
+            </div>
+            
+            <!-- Schedule -->
+            <div class="schedule">
+                <h3>📅 Class Schedule</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <strong>📱 ONLINE CLASSES (1 credit)</strong>
+                        <div>Monday 6:15 AM</div>
+                        <div>Monday 11:00 AM</div>
+                        <div>Wednesday 6:15 AM</div>
+                        <div>Wednesday 11:00 AM</div>
+                        <div>Friday 6:15 AM</div>
+                        <div>Friday 11:00 AM</div>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>🧘‍♀️ STUDIO CLASSES</strong>
+                        <div>Tuesday 9:00 AM - 2 credits</div>
+                        <div>Tuesday 6:00 PM - 2 credits</div>
+                        <div>Thursday 9:00 AM - 2 credits</div>
+                        <div>Thursday 6:00 PM - 2 credits</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Credits -->
+            <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e0e7ff 100%); border-radius: 15px; padding: 25px; margin: 25px 0; border: 2px solid #667eea;">
+                <h3 style="color: #667eea; margin-bottom: 15px; text-align: center; font-size: 1.4em;">✨ Why Choose Our Credit System?</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🔄</div>
+                        <strong style="color: #667eea;">Total Flexibility</strong>
+                        <div style="color: #666; font-size: 0.95em; margin-top: 5px;">Change your mind anytime</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 2em; margin-bottom: 5px;">💪</div>
+                        <strong style="color: #667eea;">No Pressure</strong>
+                        <div style="color: #666; font-size: 0.95em; margin-top: 5px;">Use credits at your pace</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 2em; margin-bottom: 5px;">🎯</div>
+                        <strong style="color: #667eea;">Your Schedule</strong>
+                        <div style="color: #666; font-size: 0.95em; margin-top: 5px;">Morning, evening, or both</div>
+                    </div>
+                    <div style="text-align: center; padding: 10px;">
+                        <div style="font-size: 2em; margin-bottom: 5px;">💝</div>
+                        <strong style="color: #667eea;">Best Value</strong>
+                        <div style="color: #666; font-size: 0.95em; margin-top: 5px;">One system, all classes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h3>🎁 Free Demo Classes in January 2026!</h3>
+            <div class="demo-dates">
+                <p><strong>ONLINE:</strong> Every Monday & Friday</p>
+                <p><strong>STUDIO:</strong> January 7, 9 & 12</p>
+                <p style="margin-top: 10px; font-size: 0.95em; opacity: 0.9;">Experience both formats before you commit!</p>
+            </div>
+            <p style="margin-top: 20px;">📍 Pleasanton, CA</p>
+            <p>📧 @vidyayogaflow on Instagram</p>
+            <a href="#" class="cta">REGISTER FOR FREE DEMOS</a>
+        </div>
+    </div>
+</body>
+</html>
